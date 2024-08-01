@@ -1,0 +1,37 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.PRDINewsApp" parent="Theme.Material3.DayNight">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryVariant">@color/lightBlue</item>
+        <item name="android:statusBarColor">@color/lightBlue</item>
+    </style>
+
+    <style name="Theme.PRDINewsApp.NoActionBar" parent="Base.Theme.PRDINewsApp">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Spinner" parent="Widget.AppCompat.Spinner">
+        <item name="backgroundTint">@color/white</item>
+    </style>
+
+    <style name="Theme.PRDINewsApp" parent="Base.Theme.PRDINewsApp" />
+
+    <style name="Theme.PRDINewsApp.CustomActionBar" parent="Base.Theme.PRDINewsApp">
+        <item name="actionBarStyle">@style/CustomActionBar</item>
+    </style>
+
+    <style name="CustomActionBar" parent="Widget.AppCompat.ActionBar.Solid">
+        <item name="background">@color/blue</item>
+        <item name="titleTextStyle">@style/CustomActionBarTitleText</item>
+    </style>
+
+    <style name="CustomActionBarTitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/yellow</item>
+    </style>
+</resources>
