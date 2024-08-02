@@ -44,7 +44,8 @@ class RecentSearchActivity : AppCompatActivity() {
         recentSearchViewModel.recentArticles.observe(this, Observer { articles ->
             newsAdapter.updateArticles(articles)
             showLoading(false)
-            noRecentArticlesTextView.visibility = if (articles.isEmpty()) View.VISIBLE else View.GONE
+            noRecentArticlesTextView.visibility =
+                if (articles.isEmpty()) View.VISIBLE else View.GONE
         })
 
         showLoading(true)

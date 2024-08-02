@@ -66,12 +66,12 @@
         android:id="@+id/noArticlesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/no_articles_found"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/filterCardView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/filterCardView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
