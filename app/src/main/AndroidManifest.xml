@@ -26,7 +26,7 @@
         </activity>
         <activity
             android:name=".presentation.ui.DetailArticleActivity"
-            android:theme="@style/Theme.PRDINewsApp.NoActionBar" />
+            android:theme="@style/Theme.PRDINewsApp.DetailArticle"></activity>
         <activity
             android:name=".presentation.ui.RecentSearchActivity"
             android:theme="@style/Theme.PRDINewsApp.NoActionBar" />

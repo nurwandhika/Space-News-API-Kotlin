@@ -1,4 +1,4 @@
-package com.dicoding.prdinewsapp.viewmodels
+package com.dicoding.prdinewsapp.presentation.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

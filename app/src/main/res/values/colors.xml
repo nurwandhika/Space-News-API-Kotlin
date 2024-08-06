@@ -6,4 +6,6 @@
     <color name="yellow">#ffc000</color>
     <color name="blue">#1C1678</color>
     <color name="lightBlue">#3F51B5</color>
+    <color name="grey">#757575</color>
+    <color name="background">#EEEEEE</color>
 </resources>

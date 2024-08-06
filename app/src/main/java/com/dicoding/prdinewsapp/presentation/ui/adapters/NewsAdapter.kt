@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.prdinewsapp.R
@@ -28,8 +29,10 @@ class NewsAdapter(private var articles: List<Article>) :
     override fun getItemCount(): Int = articles.size
 
     fun updateArticles(newArticles: List<Article>) {
+        val diffCallback = ArticleDiffCallback(articles, newArticles)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
         articles = newArticles
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
 
     class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

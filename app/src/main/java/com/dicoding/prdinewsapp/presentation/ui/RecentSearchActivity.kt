@@ -7,12 +7,11 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.prdinewsapp.R
 import com.dicoding.prdinewsapp.presentation.ui.adapters.NewsAdapter
-import com.dicoding.prdinewsapp.viewmodels.RecentSearchViewModel
+import com.dicoding.prdinewsapp.presentation.viewmodel.RecentSearchViewModel
 
 class RecentSearchActivity : AppCompatActivity() {
     private lateinit var recentRecyclerView: RecyclerView
@@ -41,12 +40,12 @@ class RecentSearchActivity : AppCompatActivity() {
         newsAdapter = NewsAdapter(listOf())
         recentRecyclerView.adapter = newsAdapter
 
-        recentSearchViewModel.recentArticles.observe(this, Observer { articles ->
+        recentSearchViewModel.recentArticles.observe(this) { articles ->
             newsAdapter.updateArticles(articles)
             showLoading(false)
             noRecentArticlesTextView.visibility =
                 if (articles.isEmpty()) View.VISIBLE else View.GONE
-        })
+        }
 
         showLoading(true)
     }

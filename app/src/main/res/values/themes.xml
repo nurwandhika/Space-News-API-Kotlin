@@ -5,6 +5,13 @@
         <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryVariant">@color/lightBlue</item>
         <item name="android:statusBarColor">@color/lightBlue</item>
+        <item name="android:windowBackground">@color/background</item>
+    </style>
+
+    <style name="Theme.PRDINewsApp.DetailArticle" parent="Base.Theme.PRDINewsApp">
+        <item name="android:windowBackground">@color/white</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item> <!-- Ensure windowNoTitle is set to true -->
     </style>
 
     <style name="Theme.PRDINewsApp.NoActionBar" parent="Base.Theme.PRDINewsApp">

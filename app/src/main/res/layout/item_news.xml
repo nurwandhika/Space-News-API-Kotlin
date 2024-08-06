@@ -10,8 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/articleImage"
@@ -19,6 +18,7 @@
             android:layout_height="0dp"
             android:contentDescription="@string/article_image_description"
             android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@id/articleTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.6"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,6 +29,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="serif"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="@string/title"
             android:textColor="@color/black"
             android:textSize="18sp"
@@ -44,8 +47,10 @@
             android:layout_marginTop="16dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="@string/description"
-            android:textColor="@color/black"
+            android:textColor="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/articleTitle" />
@@ -55,9 +60,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
             android:text="@string/date_time"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/articleDescription" />
+
+        <TextView
+            android:id="@+id/hyphenSeparator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:text="-"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/articleDateTime"
             app:layout_constraintTop_toBottomOf="@id/articleDescription" />
 
         <TextView
@@ -67,8 +86,11 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="@string/source"
-            app:layout_constraintStart_toEndOf="@id/articleDateTime"
+            android:textColor="@color/blue"
+            app:layout_constraintStart_toEndOf="@id/hyphenSeparator"
             app:layout_constraintTop_toBottomOf="@id/articleDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

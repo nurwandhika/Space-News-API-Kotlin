@@ -23,6 +23,8 @@ import com.dicoding.prdinewsapp.presentation.ui.adapters.NewsAdapter
 import com.dicoding.prdinewsapp.utils.Constants
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -39,6 +41,7 @@ class NewsActivity : AppCompatActivity() {
     private var currentQuery: String = ""
     private var isLoading = false
     private var currentPage = 1
+    private var searchJob: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,8 +81,12 @@ class NewsActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                currentQuery = newText ?: ""
-                filterArticles()
+                searchJob?.cancel()
+                searchJob = CoroutineScope(Dispatchers.Main).launch {
+                    delay(Constants.SEARCH_NEWS_TIME_DELAY)
+                    currentQuery = newText ?: ""
+                    filterArticles()
+                }
                 return true
             }
         })
@@ -114,13 +121,11 @@ class NewsActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val response = RetrofitInstance.api.getArticles(
                 page = currentPage,
-                pageSize = Constants.QUERY_PAGE_SIZE
+                pageSize = 10
             )
             if (response.isSuccessful) {
                 response.body()?.let { newsResponse ->
-                    newsResponse.results?.let { newArticles ->
-                        articles.addAll(newArticles)
-                    }
+                    articles.addAll(newsResponse.results)
                     val newsSites = articles.map { it.news_site }.distinct().toMutableList()
                     newsSites.add(0, "All")
                     withContext(Dispatchers.Main) {
