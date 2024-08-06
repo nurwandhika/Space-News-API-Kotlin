@@ -24,6 +24,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ProgressBar
+            android:id="@+id/loadingIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/articleImage"
+            app:layout_constraintEnd_toEndOf="@id/articleImage"
+            app:layout_constraintStart_toStartOf="@id/articleImage"
+            app:layout_constraintTop_toTopOf="@id/articleImage" />
+
         <TextView
             android:id="@+id/articleTitle"
             android:layout_width="0dp"

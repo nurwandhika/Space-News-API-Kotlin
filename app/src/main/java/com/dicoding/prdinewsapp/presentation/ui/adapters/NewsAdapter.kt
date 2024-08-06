@@ -5,9 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
+import com.bumptech.glide.request.transition.Transition
 import com.dicoding.prdinewsapp.R
 import com.dicoding.prdinewsapp.data.models.Article
 import com.dicoding.prdinewsapp.presentation.ui.DetailArticleActivity
@@ -38,13 +42,31 @@ class NewsAdapter(private var articles: List<Article>) :
         private val articleDescription: TextView = itemView.findViewById(R.id.articleDescription)
         private val articleDateTime: TextView = itemView.findViewById(R.id.articleDateTime)
         private val articleImage: ImageView = itemView.findViewById(R.id.articleImage)
+        private val loadingIndicator: ProgressBar = itemView.findViewById(R.id.loadingIndicator)
 
         fun bind(article: Article) {
             articleTitle.text = article.title
             articleSource.text = article.news_site
             articleDescription.text = article.summary
             articleDateTime.text = DateUtils.formatDateTime(article.published_at)
-            Glide.with(itemView.context).load(article.image_url).into(articleImage)
+
+            loadingIndicator.visibility = View.VISIBLE
+            Glide.with(itemView.context)
+                .load(article.image_url)
+                .apply(RequestOptions().override(Target.SIZE_ORIGINAL))
+                .into(object : com.bumptech.glide.request.target.CustomTarget<android.graphics.drawable.Drawable>() {
+                    override fun onLoadCleared(placeholder: android.graphics.drawable.Drawable?) {
+                        loadingIndicator.visibility = View.GONE
+                    }
+
+                    override fun onResourceReady(
+                        resource: android.graphics.drawable.Drawable,
+                        transition: Transition<in android.graphics.drawable.Drawable>?
+                    ) {
+                        articleImage.setImageDrawable(resource)
+                        loadingIndicator.visibility = View.GONE
+                    }
+                })
 
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailArticleActivity::class.java)
